@@ -8,7 +8,7 @@ argparser = argparse.ArgumentParser()
 group = argparser.add_mutually_exclusive_group()
 argparser.add_argument("-q", help="Your query.", required=True)
 argparser.add_argument("-f", help="Specify a CSV file as output.")
-argparser.add_argument("-v", help="Silence mode.", default=False, action='store_true')
+argparser.add_argument("-v", help="Verbose mode.", default=False, action='store_true')
 
 args = argparser.parse_args()
 
