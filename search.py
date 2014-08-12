@@ -18,7 +18,7 @@ verbose = args.v
 
 if os.name == 'nt':
     win_set_encode = Popen('win_encode.bat')
-    stdout, stderr = p.communicate()
+    stdout, stderr = win_set_encode.communicate()
 
 access_token = graph_fb.get_access_token()
 search_result = graph_fb.search(query=query, token=access_token)

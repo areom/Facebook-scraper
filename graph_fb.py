@@ -64,7 +64,7 @@ def get_access_token():
     try:
         with open('conf/access_token.conf', 'r') as conf:
             token = conf.read()
-            if token == '':
+            if token.slitlines()[0] == '':
                 raise IOError
             return token.splitlines()[0] 
     except IOError:
