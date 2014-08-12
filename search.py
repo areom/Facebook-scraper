@@ -1,6 +1,8 @@
 import argparse
 import graph_fb 
 import csv
+import os
+from subprocess import Popen
 
 argparser = argparse.ArgumentParser()
 group = argparser.add_mutually_exclusive_group()
@@ -14,6 +16,10 @@ query = args.q
 outfile = args.f
 verbose = args.v
 
+if os.name == 'nt':
+    win_set_encode = Popen('win_encode.bat')
+    stdout, stderr = p.communicate()
+
 access_token = graph_fb.get_access_token()
 search_result = graph_fb.search(query=query, token=access_token)
 
@@ -26,7 +32,7 @@ with open('conf/fields.conf', 'r') as f:
     location_fields = {'city', 'state', 'country', 'street', 'zip', 'latitude', 'longitude'}
 
 if outfile is not None:
-    csvfile = open(outfile, 'w')
+    csvfile = open(outfile, 'w', encoding='utf8')
     csvwriter = csv.writer(csvfile, dialect='excel')
 
 for place_id in id_list:
